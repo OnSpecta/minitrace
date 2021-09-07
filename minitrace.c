@@ -130,7 +130,7 @@ static inline int get_cur_process_id() {
 #if defined(BLACKBERRY)
 double mtr_time_s() {
 	struct timespec time;
-	clock_gettime(CLOCK_MONOTONIC, &time); // Linux must use CLOCK_MONOTONIC_RAW due to time warps
+	clock_gettime(CLOCK_MONOTONIC_RAW, &time); // Linux must use CLOCK_MONOTONIC_RAW due to time warps
 	return time.tv_sec + time.tv_nsec / 1.0e9;
 }
 #else
