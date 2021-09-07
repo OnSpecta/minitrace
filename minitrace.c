@@ -44,7 +44,7 @@ typedef struct raw_event {
 	const char *name;
 	const char *cat;
 	void *id;
-	int64_t ts;
+	double ts;
 	uint32_t pid;
 	uint32_t tid;
 	char ph;
@@ -322,7 +322,7 @@ void mtr_flush_with_state(int is_last) {
 				snprintf(id_buf, ARRAY_SIZE(id_buf), ",\"id\":\"0x%08x\"", (uint32_t)(uintptr_t)raw->id);
 				break;
 			case 'X':
-				snprintf(id_buf, ARRAY_SIZE(id_buf), ",\"dur\":%i", (int)raw->a_double);
+				snprintf(id_buf, ARRAY_SIZE(id_buf), ",\"dur\":%f", (double)raw->a_double);
 				break;
 			}
 		} else {
@@ -344,7 +344,7 @@ void mtr_flush_with_state(int is_last) {
 		}
 #endif
 
-		len = snprintf(linebuf, ARRAY_SIZE(linebuf), "%s{\"cat\":\"%s\",\"pid\":%i,\"tid\":%i,\"ts\":%" PRId64 ",\"ph\":\"%c\",\"name\":\"%s\",\"args\":{%s}%s}",
+		len = snprintf(linebuf, ARRAY_SIZE(linebuf), "%s{\"cat\":\"%s\",\"pid\":%i,\"tid\":%i,\"ts\":%f,\"ph\":\"%c\",\"name\":\"%s\",\"args\":{%s}%s}",
 				first_line ? "" : ",\n",
 				cat, raw->pid, raw->tid, raw->ts - time_offset, raw->ph, raw->name, arg_buf, id_buf);
 		fwrite(linebuf, 1, len, f);
