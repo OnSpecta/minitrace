@@ -411,10 +411,10 @@ void internal_mtr_raw_event(const char *category, const char *name, char ph, voi
 	if (ev->ph == 'X') {
 		double x;
 		memcpy(&x, id, sizeof(double));
-		ev->ts = (int64_t)(x * 1000000);
+		ev->ts = (double)(x * 1000000);
 		ev->a_double = (ts - x) * 1000000;
 	} else {
-		ev->ts = (int64_t)(ts * 1000000);
+		ev->ts = (double)(ts * 1000000);
 	}
 	ev->tid = cur_thread_id;
 	ev->pid = cur_process_id;

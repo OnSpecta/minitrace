@@ -64,6 +64,12 @@ int main() {
 	MTR_FINISH("background", "long_running", &long_running_thing_1);
 	MTR_FINISH("background", "long_running", &long_running_thing_2);
 
+	for (size_t i = 0; i < 5; i++)
+	{
+		MTR_SCOPE("short", "short");
+	}
+	
+
 	mtr_flush();
 	mtr_shutdown();
 	return 0;
