@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-project(minitrace)
+
+# TODO(kwasik): Disabled temporarily, since it was causing problems with cross-compilation
+# project(minitrace)
 
 add_library(${PROJECT_NAME} STATIC minitrace.c)
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
